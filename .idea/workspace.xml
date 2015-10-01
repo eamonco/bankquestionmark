@@ -4,9 +4,12 @@
     <list default="true" id="1c9f8734-2415-49c7-b6b4-31186afa647b" name="Default" comment="" />
     <ignored path="bank.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Main.java" changelist="1c9f8734-2415-49c7-b6b4-31186afa647b" time="1443697603177" ignored="false" />
-    <file path="/accountcreation.java" changelist="1c9f8734-2415-49c7-b6b4-31186afa647b" time="1443697499267" ignored="false" />
+    <file path="/Main.java" changelist="1c9f8734-2415-49c7-b6b4-31186afa647b" time="1443711069954" ignored="false" />
+    <file path="/accountcreation.java" changelist="1c9f8734-2415-49c7-b6b4-31186afa647b" time="1443706336305" ignored="false" />
     <file path="/fragment.java" changelist="1c9f8734-2415-49c7-b6b4-31186afa647b" time="1443693641482" ignored="false" />
+    <file path="/accountTypes.java" changelist="1c9f8734-2415-49c7-b6b4-31186afa647b" time="1443700551250" ignored="false" />
+    <file path="/accountCreation.java" changelist="1c9f8734-2415-49c7-b6b4-31186afa647b" time="1443709760359" ignored="false" />
+    <file path="/BankAccount.java" changelist="1c9f8734-2415-49c7-b6b4-31186afa647b" time="1443710661841" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,16 +71,19 @@
       <file leaf-file-name="Main.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="39" selection-start="1864" selection-end="1864" vertical-scroll-proportion="1.6080247">
-              <folding />
+            <state line="104" column="26" selection-start="3767" selection-end="3767" vertical-scroll-proportion="0.19292605">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#180#193#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="accountcreation.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/accountcreation.java">
+      <file leaf-file-name="BankAccount.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/BankAccount.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="29" selection-start="587" selection-end="587" vertical-scroll-proportion="0.0">
+            <state line="5" column="22" selection-start="106" selection-end="106" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -93,8 +99,12 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/accountcreation.java" />
+        <option value="$PROJECT_DIR$/src/accounttypes.java" />
+        <option value="$PROJECT_DIR$/src/accountTypes.java" />
+        <option value="$PROJECT_DIR$/src/accountCreation.java" />
+        <option value="$PROJECT_DIR$/src/BankAccount.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
       </list>
     </option>
   </component>
@@ -237,17 +247,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="53" y="-4" width="1313" height="668" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39923224" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14779271" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32821497" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -328,17 +338,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/accountcreation.java">
+    <entry file="file://$PROJECT_DIR$/src/BankAccount.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="29" selection-start="587" selection-end="587" vertical-scroll-proportion="0.0">
+        <state line="5" column="22" selection-start="106" selection-end="106" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="39" selection-start="1864" selection-end="1864" vertical-scroll-proportion="1.6080247">
-          <folding />
+        <state line="104" column="26" selection-start="3767" selection-end="3767" vertical-scroll-proportion="0.19292605">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#180#193#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
