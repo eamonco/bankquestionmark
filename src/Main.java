@@ -1,9 +1,13 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args)
     {
+        List accountNumbers = new ArrayList();
+
         Scanner scan = new Scanner(System.in);
 
         String firstName = "jim";
@@ -11,8 +15,19 @@ public class Main {
         String accountType = "fish";
         String typeAccount = "fish";
         int initialDeposit = -1;
+        int initialSelection;
+        int id;
+        System.out.println(" 1. Create account \n 2. View Account \n 3. Close");
 
-	    System.out.println("Please enter new account details:");
+        initialSelection = scan.nextInt();
+        scan.nextLine();
+
+        switch (initialSelection)
+        {
+            case 1:
+        {
+	    id ++;
+        System.out.println("Please enter new account details:");
         System.out.println("Firstname:");
         firstName = scan.nextLine();
         System.out.println("Surname:");
@@ -57,19 +72,19 @@ public class Main {
         }
 
         accountcreation account1 = new accountcreation(firstName, surname, typeAccount, initialDeposit);
+            break;
 
+        }
+            case 2:
+        {
+            account.showAccount();
+            break;
+        }
 
-
-        account1.showAccount();
-
-
-
-
-
-
-
-
-
-
+            case 3:
+        {
+            System.exit(0);
+        }
     }
+}
 }
