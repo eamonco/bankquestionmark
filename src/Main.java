@@ -18,8 +18,8 @@ public class Main
         int initialChoice;
         int overdraft = 0;
         int accountNumber;
-        float withdrawAmount =0;
-        float balance = 0;
+        int withdrawAmount =0;
+        int balance = 0;
         int depositAmount;
         int balanceChoice = 0;
         int accountChoice;
@@ -64,7 +64,10 @@ public class Main
                         }
 
                         else
+                        {
                             System.out.println("Please select a valid option");
+                            break;
+                        }
                     }
 
                     System.out.println("Enter the initial deposit in £");
@@ -74,6 +77,7 @@ public class Main
                         try
                         {
                             initialDeposit = Integer.parseInt(scan.nextLine());
+                            balance = balance + initialDeposit;
                             if (initialDeposit < 0)
                             {
                                 break;
@@ -82,6 +86,7 @@ public class Main
                         catch (Exception notInt)
                         {
                             System.out.println("Please enter a valid number");
+                            break;
                         }
                     }
 
@@ -110,6 +115,30 @@ public class Main
                     while (balanceChoice == 0)
                     {
                         System.out.println("Which account do you wish to withdraw from or deposit to? \nEnter ID: ");
+                        accountChoice = scan.nextInt();
+                        scan.nextLine();
+
+                        BankAccount searchAccountNumberResult;
+
+                        for (BankAccount bankAccount : accounts)
+                        {
+                            while (bankAccount.accountNumber != accountChoice)
+                            {
+                                if (bankAccount.accountNumber == accountChoice)
+                                {
+                                    searchAccountNumberResult = bankAccount;
+                                    break;
+                                }
+
+                                else
+                                {
+                                    System.out.println("There is no bank account associated with that ID");
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+                    }
                         System.out.println("Would you like to: \n 1. Withdraw money \n 2. Deposit money");
 
                         balanceChoice = scan.nextInt();
@@ -117,13 +146,15 @@ public class Main
 
                         if (balanceChoice == 1)
                         {
+                            System.out.println("Available funds: £" + balance);
                             System.out.println("Enter amount to withdraw?");
                             withdrawAmount = scan.nextInt();
                             scan.nextLine();
 
                             if (withdrawAmount > balance + overdraft || withdrawAmount > 10000)
                             {
-                                System.out.println("NA m9");
+                                System.out.println("You cannot withdraw more than you have in your account or more than £10,000 in one transaction");
+                                break;
                             }
 
                             else
@@ -147,8 +178,6 @@ public class Main
                             balanceChoice = 0;
                         }
                     }
-                }
-
                 case 4:
                 {
                     System.exit(0);
