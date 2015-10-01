@@ -2,37 +2,70 @@ import java.util.Scanner;
 
 public class Main {
 
-    public void main(String[] args)
+    public static void main(String[] args)
     {
         Scanner scan = new Scanner(System.in);
-        String firstName;
-        String surname;
-        String accountType;
-        int initialDeposit;
-        String typeAccount;
+
+        String firstName = "jim";
+        String surname = "bill";
+        String accountType = "fish";
+        String typeAccount = "fish";
+        int initialDeposit = -1;
 
 	    System.out.println("Please enter new account details:");
-        firstName = scan.nextLine();
         System.out.println("Firstname:");
-        surname = scan.nextLine();
+        firstName = scan.nextLine();
         System.out.println("Surname:");
-        accountType = scan.nextLine();
+        surname = scan.nextLine();
         System.out.println("Account type: \n 1. Saver \n 2. Standard \n 3. Premium");
+        accountType = scan.nextLine();
 
-        if (accountType == "saver" || accountType == "Saver" || accountType == "1")
+        while (typeAccount.equals("fish"))
         {
-            typeAccount = "Saver";
+            if (accountType.toLowerCase().equals("saver") || accountType.equals("1"))
+            {
+                typeAccount = "Saver";
+            }
+            else if (accountType.toLowerCase().equals("standard") || accountType.equals("2"))
+            {
+                typeAccount = "Standard";
+            }
+            else if (accountType.toLowerCase().equals("premium") || accountType.equals("3"))
+            {
+                typeAccount = "Premium";
+            }
+            else
+                System.out.println("Please select a valid option");
         }
-        else if (accountType == "standard" || accountType == "Standard" || accountType == "2")
+
+        System.out.println("Enter the initial deposit in £");
+
+        while (initialDeposit == -1)
         {
-            typeAccount = "Standard";
+            try
+            {
+                initialDeposit = Integer.parseInt(scan.nextLine());
+                if (initialDeposit < 0)
+                {
+                    break;
+                }
+            }
+            catch (Exception notInt)
+            {
+                System.out.println("Please enter a valid number");
+            }
         }
-        else if (accountType == "premium" || accountType == "Premium" || accountType == "3")
-        {
-            typeAccount = "Premium";
-        }
-        else
-            System.out.println("Please select a valid option");
+
+        accountcreation account1 = new accountcreation(firstName, surname, typeAccount, initialDeposit);
+
+
+
+        account1.showAccount();
+
+
+
+
+
 
 
 

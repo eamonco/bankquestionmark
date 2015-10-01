@@ -1,22 +1,24 @@
+import java.util.Scanner;
+
 public class accountcreation {
 
-    public enum AccountType
-    {
-        Standard,
-        Saver,
-        Premium
-    }
-
     public String firstName;
-    public String surName;
+    public String surname;
     public int initialDeposit;
-    public AccountType accountType;
+    public String accountType;
+    Scanner scanner = new Scanner(System.in);
+    public int accountNumber;
 
-    public accountcreation(String firstName, String surname, AccountType accountType, int initialDeposit)
+    public accountcreation(String firstName, String surname, String accountType, int initialDeposit)
     {
         this.firstName = firstName;
-        this.surName = surname;
+        this.surname = surname;
         this.accountType = accountType;
         this.initialDeposit = initialDeposit;
+    }
+
+    public void showAccount()
+    {
+        System.out.println(" Account Number: " + "\n Account type: " + accountType + "\n Firstname: " + firstName + "\n Surname: " + surname + "\n Balance: " + initialDeposit);
     }
 }
