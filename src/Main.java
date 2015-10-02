@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Main
 {
-    public static void enterAccountType()
+   /* public static void enterAccountType()
     {
         String accountType;
         String typeAccount;
@@ -63,32 +63,18 @@ public class Main
             InitialDeposits();
         }
     }
-
-    public static void listAllAccounts()
-    {
-        ArrayList<BankAccount> accounts = new ArrayList<BankAccount>();
-
-        for (BankAccount bankAccount : accounts)
-        {
-            System.out.println(bankAccount.accountNumber + " (" + bankAccount.accountType + ") - " + bankAccount.firstName + " " + bankAccount.surname + " - £" + bankAccount.balance);
-
-            if (bankAccount.firstName.equals(null))
-            {
-                System.out.println("Done");
-            }
-        }
-    }
-
+    */
     public static void accountManagement()
     {
         ArrayList<BankAccount> accounts = new ArrayList<BankAccount>();
         Scanner scan = new Scanner(System.in);
         int accountChoice;
-        int withdrawAmount =0;
+        int withdrawAmount;
         int balance;
         int depositAmount;
         int overdraft;
-        int balanceChoice = 0;
+        int balanceChoice;
+        int loop = 101;
 
         System.out.println("Which account do you wish to withdraw from or deposit to? \nEnter ID: ");
         accountChoice = scan.nextInt();
@@ -101,7 +87,6 @@ public class Main
             if (bankAccount.accountNumber == accountChoice)
             {
                 searchAccountNumberResult = bankAccount;
-                balance = searchAccountNumberResult.balance;
             }
 
             else
@@ -117,42 +102,62 @@ public class Main
 
             if (balanceChoice == 1)
             {
+                balance = bankAccount.balance;
+                overdraft = bankAccount.overdraft;
+
                 System.out.println("Available funds: £" + balance);
-                System.out.println("Enter amount to withdraw?");
+                System.out.println("Enter amount to withdraw");
                 withdrawAmount = scan.nextInt();
                 scan.nextLine();
 
-                if (withdrawAmount > balance + overdraft || withdrawAmount > 10000)
+                while(loop == 101)
                 {
-                    System.out.println("You cannot withdraw more than you have in your account or more than £10,000 in one transaction");
-                    break;
-                }
+                    if (withdrawAmount > balance + overdraft || withdrawAmount > 10000)
+                    {
+                        System.out.println("You cannot withdraw more than you have in your account or more than £10,000 in one transaction");
+                        loop = 101;
+                    }
 
-                else
-                {
-                    balance = balance - withdrawAmount - 1;
-                    System.out.println(" Amount withdrawn: " + withdrawAmount + "\n New balance: " + balance);
+                    else
+                    {
+                        balance = balance - withdrawAmount - 1;
+                        System.out.println(" Amount withdrawn: " + withdrawAmount + "\n New balance: " + balance);
+                        loop++;
+                    }
                 }
             }
 
             else if (balanceChoice == 2)
             {
-                System.out.println("Enter amount to deposit");
-                depositAmount = scan.nextInt();
-                scan.nextLine();
-                System.out.println("£" + depositAmount + " have been deposited. \n Your new balance is: " + balance + depositAmount);
-            }
+                while (loop == 101)
+                {
+                    loop = 101;
+                    balance = bankAccount.balance;
+                    System.out.println("Enter amount to deposit");
 
-            else
-            {
-                System.out.println("Choose a valid option (1 or 2)");
-                balanceChoice = 0;
+                    try
+                    {
+                        depositAmount = scan.nextInt();
+                        scan.nextLine();
+                        System.out.println("£" + depositAmount + " have been deposited. \n Your new balance is: " + balance + depositAmount);
+                        loop++;
+                    }
+
+                    catch (Exception notInt)
+                    {
+                        System.out.println("Choose a valid option (1 or 2)");
+                        balanceChoice = 0;
+                        loop = 101;
+
+                    }
+                }
             }
-        }
         }
     }
+}
 
-    public static void main(String[] args)
+
+ /*   public static void main(String[] args)
     {
         ArrayList<BankAccount> accounts = new ArrayList<BankAccount>();
 
@@ -195,7 +200,15 @@ public class Main
 
                 case 2:
                 {
-                    listAllAccounts();
+                    for (BankAccount bankAccount : accounts)
+                    {
+                        System.out.println(bankAccount.accountNumber + " (" + bankAccount.accountType + ") - " + bankAccount.firstName + " " + bankAccount.surname + " - £" + bankAccount.balance);
+
+                        if (bankAccount.firstName.equals(null))
+                        {
+                            System.out.println("Done");
+                        }
+                    }
                 }
 
                 case 3:
