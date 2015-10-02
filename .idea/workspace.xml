@@ -74,10 +74,9 @@
       <file leaf-file-name="Main.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="158" column="29" selection-start="4767" selection-end="4767" vertical-scroll-proportion="0.39087948">
+            <state line="250" column="1" selection-start="7226" selection-end="7226" vertical-scroll-proportion="12.214984">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1824#1837#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -342,7 +341,6 @@
         <state line="69" column="25" selection-start="2411" selection-end="2411" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1824#1837#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -368,10 +366,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="158" column="29" selection-start="4767" selection-end="4767" vertical-scroll-proportion="0.39087948">
+        <state line="250" column="1" selection-start="7226" selection-end="7226" vertical-scroll-proportion="12.214984">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1824#1837#0" expanded="true" />
           </folding>
         </state>
       </provider>

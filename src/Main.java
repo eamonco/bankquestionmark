@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Main
 {
-   /* public static void enterAccountType()
+    public static void enterAccountType()
     {
         String accountType;
         String typeAccount;
@@ -36,7 +36,7 @@ public class Main
             System.out.println("Please select a valid option");
             enterAccountType();
         }
-    }
+    }    /*
 
     public static void InitialDeposits()
     {
@@ -63,7 +63,8 @@ public class Main
             InitialDeposits();
         }
     }
-    */
+}
+    /*
     public static void accountManagement()
     {
         ArrayList<BankAccount> accounts = new ArrayList<BankAccount>();
@@ -245,4 +246,6 @@ break;
 
 
         break;
-} */
+}
+*/
+}
