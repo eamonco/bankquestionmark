@@ -63,7 +63,6 @@ public class Main
         return balance;
     }
 
-
     public static void accountManagement(ArrayList<BankAccount> accounts)
     {
         Scanner scan = new Scanner(System.in);
@@ -74,6 +73,7 @@ public class Main
         int overdraft;
         int balanceChoice;
         boolean loop = true;
+        int count = 0;
 
         System.out.println("Which account do you wish to withdraw from or deposit to? \nEnter ID: ");
         accountChoice = scan.nextInt();
@@ -86,10 +86,17 @@ public class Main
             if (bankAccount.accountNumber == accountChoice)
             {
                 searchAccountNumberResult = bankAccount;
+                break;
             }
-            else
+            else if (count > accounts.size())
             {
                 System.out.println("There is no bank account associated with that ID");
+                count ++;
+                break;
+            }
+            else if (accountChoice > accounts.size())
+            {
+                System.out.println("Enter the ID of an existing bank account");
             }
         }
 
@@ -115,12 +122,14 @@ public class Main
                     if (withdrawAmount > balance + overdraft || withdrawAmount > 10000)
                     {
                         System.out.println("You cannot withdraw more than you have in your account or more than £10,000 in one transaction");
+                        break;
                     }
                     else
                     {
                         balance = balance - withdrawAmount - 1;
                         System.out.println(" Amount withdrawn: " + withdrawAmount + "\n New balance: " + balance);
                         loop = false;
+                        searchAccountNumberResult.balance = balance;
                     }
                 }
             }
@@ -134,10 +143,11 @@ public class Main
 
                     try
                     {
-                        depositAmount = scan.nextInt();
+                        depositAmount = Integer.parseInt(scan.nextLine());
                         scan.nextLine();
-                        System.out.println("£" + depositAmount + " have been deposited. \n Your new balance is: " + balance + depositAmount);
-                        searchAccountNumberResult.balance = balance + depositAmount;
+                        balance = balance + depositAmount;
+                        System.out.println("£" + depositAmount + " have been deposited. \n Your new balance is: " + balance);
+                        searchAccountNumberResult.balance = searchAccountNumberResult.balance + depositAmount;
                         loop = false;
                     }
 
@@ -153,12 +163,13 @@ public class Main
 
 
 
+
     public static void main(String[] args)
     {
         ArrayList<BankAccount> accounts = new ArrayList<BankAccount>();
 
         accounts.add(new BankAccount(1, "john", "smith", "Saver", 400, 0));
-        accounts.add(new BankAccount(1, "jonny", "Moore", "Premium", 500, 3000));
+        accounts.add(new BankAccount(2, "jonny", "Moore", "Premium", 500, 3000));
 
         Scanner scan = new Scanner(System.in);
 
@@ -185,8 +196,6 @@ public class Main
                     String surname = scan.nextLine();
 
                     String accountType = getAccountType();
-
-                    InitialDeposits();
 
                     accountNumber = accounts.size() + 1;
 

@@ -4,7 +4,7 @@
     <list default="true" id="1c9f8734-2415-49c7-b6b4-31186afa647b" name="Default" comment="" />
     <ignored path="bank.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Main.java" changelist="1c9f8734-2415-49c7-b6b4-31186afa647b" time="1443794849726" ignored="false" />
+    <file path="/Main.java" changelist="1c9f8734-2415-49c7-b6b4-31186afa647b" time="1443799686857" ignored="false" />
     <file path="/accountcreation.java" changelist="1c9f8734-2415-49c7-b6b4-31186afa647b" time="1443706336305" ignored="false" />
     <file path="/fragment.java" changelist="1c9f8734-2415-49c7-b6b4-31186afa647b" time="1443693641482" ignored="false" />
     <file path="/accountTypes.java" changelist="1c9f8734-2415-49c7-b6b4-31186afa647b" time="1443700551250" ignored="false" />
@@ -74,10 +74,10 @@
       <file leaf-file-name="Main.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="177" column="49" selection-start="5608" selection-end="5608" vertical-scroll-proportion="5.543974">
+            <state line="119" column="49" selection-start="3620" selection-end="3620" vertical-scroll-proportion="0.21824104">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4986#4999#0" expanded="true" />
+                <element signature="e#5460#5473#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -342,7 +342,7 @@
         <state line="69" column="25" selection-start="2411" selection-end="2411" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4986#4999#0" expanded="true" />
+            <element signature="e#5460#5473#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -389,10 +389,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="177" column="49" selection-start="5608" selection-end="5608" vertical-scroll-proportion="5.543974">
+        <state line="119" column="49" selection-start="3620" selection-end="3620" vertical-scroll-proportion="0.21824104">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4986#4999#0" expanded="true" />
+            <element signature="e#5460#5473#0" expanded="true" />
           </folding>
         </state>
       </provider>
