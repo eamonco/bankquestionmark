@@ -18,9 +18,8 @@ public class BankAccount
         this.overdraft = overdraft;
     }
 
-    public int showAccount(int accountNumber)
+    public String getDescription()
     {
-       System.out.println(" Account Number: " + accountNumber + "\n Account type: " + accountType + "\n Firstname: " + firstName + "\n Surname: " + surname + "\n Balance: " + balance + "\n Overdraft limit: " + overdraft);
-       return accountNumber;
+        return this.accountNumber + " (" + this.accountType + ") - " + this.firstName + " " + this.surname + " - £" + this.balance;
     }
 }
