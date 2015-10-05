@@ -38,12 +38,12 @@ public class Main
     public static int InitialDeposits()
     {
         int balance = 0;
-        int initialDeposit = 0;
+        int initialDeposit = -1;
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Enter the initial deposit in £");
 
-        while (initialDeposit == 0)
+        while (initialDeposit == -1)
         {
             try
             {
