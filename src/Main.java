@@ -3,11 +3,12 @@ import java.util.ArrayList;
 
 public class Main
 {
+    static Scanner scan = new Scanner(System.in);
+
     public static String getAccountType()
     {
         String accountType;
         String typeAccount = null;
-        Scanner scan = new Scanner(System.in);
 
         while(typeAccount == null)
         {
@@ -61,6 +62,38 @@ public class Main
             }
         }
         return balance;
+    }
+
+    public static void makeDeposit(BankAccount bankAccount)
+    {
+        while (true)
+        {
+            System.out.println("Enter amount to deposit");
+
+            try
+            {
+                int depositAmount = Integer.parseInt(scan.nextLine());
+
+                if (depositAmount < 0)
+                {
+                    System.out.println("Please enter a positive number");
+                }
+                else
+                {
+                    bankAccount.deposit(depositAmount);
+                    System.out.println("£" + depositAmount + " have been deposited. \n Your new balance is: " + bankAccount.getBalance());
+                    break;
+                }
+            }
+            catch(NumberFormatException error)
+            {
+                System.out.println("You must've entered a bad amount, make sure you've entered a number");
+            }
+            catch (Exception error)
+            {
+                System.out.println(error.getMessage());
+            }
+        }
     }
 
     public static void accountManagement(ArrayList<BankAccount> accounts)
@@ -121,8 +154,8 @@ public class Main
 
                     if (balanceChoice == 1)
                     {
-                        balance = searchAccountNumberResult.balance;
-                        overdraft = searchAccountNumberResult.overdraft;
+                        balance = searchAccountNumberResult.getBalance();
+                        overdraft = searchAccountNumberResult.getOverdraft();
 
                         System.out.println("Available funds: £" + balance);
                         System.out.println("Enter amount to withdraw");
@@ -140,8 +173,7 @@ public class Main
                             {
                                 balance = balance - withdrawAmount - 1;
                                 System.out.println(" Amount withdrawn: " + withdrawAmount + "\n New balance: " + balance);
-                                loop = false;
-                                searchAccountNumberResult.balance = balance;
+                                // TODO: searchAccountNumberResult.balance = balance;
                                 break;
                             }
                         }
@@ -149,35 +181,7 @@ public class Main
 
                     else if (balanceChoice == 2)
                     {
-                        while (loop == true)
-                        {
-                            balance = searchAccountNumberResult.balance;
-                            System.out.println("Enter amount to deposit");
-
-                            try
-                            {
-                                depositAmount = Integer.parseInt(scan.nextLine());
-                                scan.nextLine();
-
-                                if (depositAmount < 0)
-                                {
-                                    System.out.println("Please enter a positive number");
-                                    loop = false;
-                                }
-
-                                balance = balance + depositAmount;
-                                System.out.println("£" + depositAmount + " have been deposited. \n Your new balance is: " + balance);
-                                searchAccountNumberResult.balance = searchAccountNumberResult.balance + depositAmount;
-                                loop = false;
-                                break;
-                            }
-
-                            catch (Exception notInt)
-                            {
-                                System.out.println("Enter a numeric value");
-                                break;
-                            }
-                        }
+                        makeDeposit(searchAccountNumberResult);
                     }
                     else
                     {
