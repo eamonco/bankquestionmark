@@ -87,7 +87,7 @@ public class Main
             }
             catch(NumberFormatException error)
             {
-                System.out.println("You must've entered a bad amount, make sure you've entered a number");
+                System.out.println("Please enter a numeric value");
             }
             catch (Exception error)
             {
@@ -155,26 +155,24 @@ public class Main
                     if (balanceChoice == 1)
                     {
                         balance = searchAccountNumberResult.getBalance();
-                        overdraft = searchAccountNumberResult.getOverdraft();
-
-                        System.out.println("Available funds: £" + balance);
-                        System.out.println("Enter amount to withdraw");
-                        withdrawAmount = scan.nextInt();
-                        scan.nextLine();
 
                         while(loop)
                         {
-                            if (withdrawAmount > balance + overdraft || withdrawAmount > 10000)
+                            System.out.println("Available funds: £" + balance);
+                            System.out.println("Enter amount to withdraw");
+                            withdrawAmount = scan.nextInt();
+                            scan.nextLine();
+
+                            try
                             {
-                                System.out.println("You cannot withdraw more than you have in your account and overdraft combined, or more than £10,000 in one transaction");
+                                searchAccountNumberResult.withdraw(withdrawAmount);
+                                System.out.println(" Amount withdrawn: " + withdrawAmount + "\n New balance: " + balance);
                                 break;
                             }
-                            else
+
+                            catch (Exception error)
                             {
-                                balance = balance - withdrawAmount - 1;
-                                System.out.println(" Amount withdrawn: " + withdrawAmount + "\n New balance: " + balance);
-                                // TODO: searchAccountNumberResult.balance = balance;
-                                break;
+                                System.out.println(error.getMessage());
                             }
                         }
                     }
@@ -260,27 +258,3 @@ public class Main
         }
     }
 }
-
-
- /* {
-        System.out.println("Enter the account number of the account you wish to view");
-
-accountChoice = scan.nextInt();
-scan.nextLine();
-
-BankAccount searchAccountNumberResult;
-
-for (BankAccount bankAccount : accounts)
-        {
-        if (bankAccount.accountNumber == accountChoice)
-        {
-        searchAccountNumberResult = bankAccount;
-break;
-}
-        }
-
-
-
-        break;
-}
-*/
