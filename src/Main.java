@@ -200,8 +200,8 @@ public class Main
     {
         ArrayList<BankAccount> accounts = new ArrayList<BankAccount>();
 
-        accounts.add(new BankAccount(1, "john", "smith", "Saver", 400, 0));
-        accounts.add(new BankAccount(2, "jonny", "Moore", "Premium", 500, 3000));
+        accounts.add(new BankAccount(1, "John", "Smith", "Saver", 400, 0));
+        accounts.add(new BankAccount(2, "Jonny", "Moore", "Premium", 500, 3000));
 
         Scanner scan = new Scanner(System.in);
 
@@ -216,44 +216,51 @@ public class Main
             initialChoice = scan.nextInt();
             scan.nextLine();
 
-            switch (initialChoice)
+            if (initialChoice <5 && initialChoice > 0)
             {
-                case 1:
+                switch (initialChoice)
                 {
-                    System.out.println("Please enter new account details:");
-                    System.out.println("Firstname:");
-                    String firstName = scan.nextLine();
-                    System.out.println("Surname:");
-                    String surname = scan.nextLine();
-
-                    String accountType = getAccountType();
-
-                    accountNumber = accounts.size() + 1;
-
-                    int balance = InitialDeposits();
-
-                    accounts.add(new BankAccount(accountNumber, firstName, surname, accountType, balance, overdraft));
-                        break;
-                }
-
-                case 2:
-                {
-                    for (BankAccount bankAccount : accounts)
+                    case 1:
                     {
-                        System.out.println(bankAccount.getDescription());
-                    }
-                    break;
-                }
+                        System.out.println("Please enter new account details:");
+                        System.out.println("Firstname:");
+                        String firstName = scan.nextLine();
+                        System.out.println("Surname:");
+                        String surname = scan.nextLine();
 
-                case 3:
-                {
-                    accountManagement(accounts);
-                    break;
+                        String accountType = getAccountType();
+
+                        accountNumber = accounts.size() + 1;
+
+                        int balance = InitialDeposits();
+
+                        accounts.add(new BankAccount(accountNumber, firstName, surname, accountType, balance, overdraft));
+                            break;
+                    }
+
+                    case 2:
+                    {
+                        for (BankAccount bankAccount : accounts)
+                        {
+                            System.out.println(bankAccount.getDescription());
+                        }
+                        break;
+                    }
+
+                    case 3:
+                    {
+                        accountManagement(accounts);
+                        break;
+                    }
+                    case 4:
+                    {
+                        System.exit(0);
+                    }
                 }
-                case 4:
-                {
-                    System.exit(0);
-                }
+            }
+            else
+            {
+                System.out.println("Please select an valid option");
             }
         }
     }
