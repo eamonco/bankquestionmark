@@ -3,11 +3,12 @@ import java.util.ArrayList;
 
 public class Main
 {
+    static Scanner scan = new Scanner(System.in);
+
     public static String getAccountType()
     {
         String accountType;
         String typeAccount = null;
-        Scanner scan = new Scanner(System.in);
 
         while(typeAccount == null)
         {
@@ -38,12 +39,12 @@ public class Main
     public static int InitialDeposits()
     {
         int balance = 0;
-        int initialDeposit = 0;
+        int initialDeposit = -1;
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Enter the initial deposit in £");
 
-        while (initialDeposit == 0)
+        while (initialDeposit == -1)
         {
             try
             {
@@ -63,6 +64,38 @@ public class Main
         return balance;
     }
 
+    public static void makeDeposit(BankAccount bankAccount)
+    {
+        while (true)
+        {
+            System.out.println("Enter amount to deposit");
+
+            try
+            {
+                int depositAmount = Integer.parseInt(scan.nextLine());
+
+                if (depositAmount < 0)
+                {
+                    System.out.println("Please enter a positive number");
+                }
+                else
+                {
+                    bankAccount.deposit(depositAmount);
+                    System.out.println("£" + depositAmount + " have been deposited. \n Your new balance is: " + bankAccount.getBalance());
+                    break;
+                }
+            }
+            catch(NumberFormatException error)
+            {
+                System.out.println("Please enter a numeric value");
+            }
+            catch (Exception error)
+            {
+                System.out.println(error.getMessage());
+            }
+        }
+    }
+
     public static void accountManagement(ArrayList<BankAccount> accounts)
     {
         Scanner scan = new Scanner(System.in);
@@ -73,109 +106,107 @@ public class Main
         int overdraft;
         int balanceChoice;
         boolean loop = true;
-        int count = 0;
+        boolean accountManagementChoice = true;
+        boolean accountNumberIsValid = false;
 
         System.out.println("Which account do you wish to withdraw from or deposit to? \nEnter ID: ");
-        accountChoice = scan.nextInt();
-        scan.nextLine();
 
         BankAccount searchAccountNumberResult = null;
 
-        for (BankAccount bankAccount : accounts)
+        while (!accountNumberIsValid)
         {
-            if (bankAccount.accountNumber == accountChoice)
+            try
             {
-                searchAccountNumberResult = bankAccount;
-                break;
+                accountChoice = scan.nextInt();
+                scan.nextLine();
+
+                accountNumberIsValid = true;
+
+                for (BankAccount bankAccount : accounts)
+                {
+                    if (bankAccount.accountNumber == accountChoice)
+                    {
+                        searchAccountNumberResult = bankAccount;
+                        break;
+                    }
+                }
             }
-            else if (count > accounts.size())
+            catch (Exception notInt)
             {
-                System.out.println("There is no bank account associated with that ID");
-                count ++;
+                System.out.println("Please enter a valid number");
                 break;
-            }
-            else if (accountChoice > accounts.size())
-            {
-                System.out.println("Enter the ID of an existing bank account");
             }
         }
 
-        if (searchAccountNumberResult != null)
+        if (searchAccountNumberResult == null)
+        {
+            System.out.println("There is no bank account associated with that ID");
+        }
+        else
         {
             System.out.println("Would you like to: \n 1. Withdraw money \n 2. Deposit money");
-
-            balanceChoice = scan.nextInt();
-            scan.nextLine();
-
-            if (balanceChoice == 1)
+            while (accountManagementChoice)
             {
-                balance = searchAccountNumberResult.balance;
-                overdraft = searchAccountNumberResult.overdraft;
-
-                System.out.println("Available funds: £" + balance);
-                System.out.println("Enter amount to withdraw");
-                withdrawAmount = scan.nextInt();
-                scan.nextLine();
-
-                while(loop == true)
+                try
                 {
-                    if (withdrawAmount > balance + overdraft || withdrawAmount > 10000)
+                    balanceChoice = scan.nextInt();
+                    scan.nextLine();
+
+                    if (balanceChoice == 1)
                     {
-                        System.out.println("You cannot withdraw more than you have in your account or more than £10,000 in one transaction");
-                        break;
+                        balance = searchAccountNumberResult.getBalance();
+
+                        while(loop)
+                        {
+                            System.out.println("Available funds: £" + balance);
+                            System.out.println("Enter amount to withdraw");
+                            withdrawAmount = scan.nextInt();
+                            scan.nextLine();
+
+                            try
+                            {
+                                searchAccountNumberResult.withdraw(withdrawAmount);
+                                System.out.println(" Amount withdrawn: " + withdrawAmount + "\n New balance: " + balance);
+                                break;
+                            }
+
+                            catch (Exception error)
+                            {
+                                System.out.println(error.getMessage());
+                            }
+                        }
+                    }
+
+                    else if (balanceChoice == 2)
+                    {
+                        makeDeposit(searchAccountNumberResult);
                     }
                     else
                     {
-                        balance = balance - withdrawAmount - 1;
-                        System.out.println(" Amount withdrawn: " + withdrawAmount + "\n New balance: " + balance);
-                        loop = false;
-                        searchAccountNumberResult.balance = balance;
-                    }
-                }
-            }
-
-            else if (balanceChoice == 2)
-            {
-                while (loop == true)
-                {
-                    balance = searchAccountNumberResult.balance;
-                    System.out.println("Enter amount to deposit");
-
-                    try
-                    {
-                        depositAmount = Integer.parseInt(scan.nextLine());
-                        scan.nextLine();
-                        balance = balance + depositAmount;
-                        System.out.println("£" + depositAmount + " have been deposited. \n Your new balance is: " + balance);
-                        searchAccountNumberResult.balance = searchAccountNumberResult.balance + depositAmount;
-                        loop = false;
-                    }
-
-                    catch (Exception notInt)
-                    {
                         System.out.println("Choose a valid option (1 or 2)");
-                        balanceChoice = 0;
                     }
                 }
+                catch (Exception notInt)
+                {
+                    System.out.println("Please enter a valid number");
+                    break;
+                }
+                break;
             }
         }
     }
-
-
-
 
     public static void main(String[] args)
     {
         ArrayList<BankAccount> accounts = new ArrayList<BankAccount>();
 
-        accounts.add(new BankAccount(1, "john", "smith", "Saver", 400, 0));
-        accounts.add(new BankAccount(2, "jonny", "Moore", "Premium", 500, 3000));
+        accounts.add(new BankAccount(1, "John", "Smith", "Saver", 400, 0));
+        accounts.add(new BankAccount(2, "Jonny", "Moore", "Premium", 500, 3000));
 
         Scanner scan = new Scanner(System.in);
 
-        int initialDeposit = 0;
         int initialChoice;
-        int overdraft = 0; // TODO: fix later
+        int overdraft = 0;
         int accountNumber;
 
         while (true)
@@ -185,69 +216,52 @@ public class Main
             initialChoice = scan.nextInt();
             scan.nextLine();
 
-            switch (initialChoice)
+            if (initialChoice <5 && initialChoice > 0)
             {
-                case 1:
+                switch (initialChoice)
                 {
-                    System.out.println("Please enter new account details:");
-                    System.out.println("Firstname:");
-                    String firstName = scan.nextLine();
-                    System.out.println("Surname:");
-                    String surname = scan.nextLine();
-
-                    String accountType = getAccountType();
-
-                    accountNumber = accounts.size() + 1;
-
-                    int balance = InitialDeposits();
-
-                    accounts.add(new BankAccount(accountNumber, firstName, surname, accountType, balance, overdraft));
-                        break;
-                }
-
-                case 2:
-                {
-                    for (BankAccount bankAccount : accounts)
+                    case 1:
                     {
-                        System.out.println(bankAccount.accountNumber + " (" + bankAccount.accountType + ") - " + bankAccount.firstName + " " + bankAccount.surname + " - £" + bankAccount.balance);
-                    }
-                    break;
-                }
+                        System.out.println("Please enter new account details:");
+                        System.out.println("Firstname:");
+                        String firstName = scan.nextLine();
+                        System.out.println("Surname:");
+                        String surname = scan.nextLine();
 
-                case 3:
-                {
-                    accountManagement(accounts);
-                    break;
+                        String accountType = getAccountType();
+
+                        accountNumber = accounts.size() + 1;
+
+                        int balance = InitialDeposits();
+
+                        accounts.add(new BankAccount(accountNumber, firstName, surname, accountType, balance, overdraft));
+                            break;
+                    }
+
+                    case 2:
+                    {
+                        for (BankAccount bankAccount : accounts)
+                        {
+                            System.out.println(bankAccount.getDescription());
+                        }
+                        break;
+                    }
+
+                    case 3:
+                    {
+                        accountManagement(accounts);
+                        break;
+                    }
+                    case 4:
+                    {
+                        System.exit(0);
+                    }
                 }
-                case 4:
-                {
-                    System.exit(0);
-                }
+            }
+            else
+            {
+                System.out.println("Please select an valid option");
             }
         }
     }
 }
-
-
- /* {
-        System.out.println("Enter the account number of the account you wish to view");
-
-accountChoice = scan.nextInt();
-scan.nextLine();
-
-BankAccount searchAccountNumberResult;
-
-for (BankAccount bankAccount : accounts)
-        {
-        if (bankAccount.accountNumber == accountChoice)
-        {
-        searchAccountNumberResult = bankAccount;
-break;
-}
-        }
-
-
-
-        break;
-}
-*/
